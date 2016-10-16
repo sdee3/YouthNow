@@ -5,6 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -33,6 +37,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
+        FeedItem current = feedItems.get(position);
+        holder.title.setText(current.getTitle());
+        holder.desc.setText(current.getDescription());
+        holder.date.setText(current.getPubDate());
+        // Picasso.with(context).load(current.getIMG()).into(holder.img);
+
     }
 
     @Override
@@ -41,8 +51,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
+        TextView title, desc, date;
+        ImageView img;
+
         public MyViewHolder(View itemView) {
             super(itemView);
+
+            title = (TextView) itemView.findViewById(R.id.title_text);
+            desc = (TextView) itemView.findViewById(R.id.description_text);
+            date = (TextView) itemView.findViewById(R.id.dateText);
+
+            img = (ImageView) itemView.findViewById(R.id.thumb_img);
+
         }
     }
 }
