@@ -1,5 +1,6 @@
 package rs.youthnow;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -56,6 +57,8 @@ public class Main extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent settingIntent = new Intent(Main.this, Podesavanja.class);
+            Main.this.startActivity(settingIntent);
             return true;
         }
 
@@ -69,25 +72,35 @@ public class Main extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_studenti) {
-            // Handle the camera action
+            Intent studentiIntent = new Intent(Main.this, Studenti.class);
+            Main.this.startActivity(studentiIntent);
         } else if (id == R.id.nav_dogadjaji) {
-
+            //Intent dogadjajiIntent = new Intent(Main.this, Dogadjaji.class);
+            //Main.this.startActivity(dogadjajiIntent);
         } else if (id == R.id.nav_it) {
-
+            //Intent itIntent = new Intent(Main.this, IT.class);
+            //Main.this.startActivity(itIntent);
         } else if (id == R.id.nav_nauka) {
-
+            //Intent naukaIntent = new Intent(Main.this, Nauka.class);
+            //Main.this.startActivity(naukaIntent);
         } else if (id == R.id.nav_lifestyle) {
-
+            //Intent lifestyleIntent = new Intent(Main.this, Lifestyle.class);
+            //Main.this.startActivity(lifestyleIntent);
         } else if (id == R.id.nav_online_psiholog) {
-
+            //Intent onlinePshihologIntent = new Intent(Main.this, OnlinePsiholog.class);
+            //Main.this.startActivity(onlinePsihologIntent);
         } else if (id == R.id.nav_kulturiska) {
-
+            //Intent kulturiskaIntent = new Intent(Main.this, Kulturiska.class);
+            //Main.this.startActivity(kulturiskaIntent);
         } else if (id == R.id.nav_zabava) {
-
+            //Intent zabavaIntent = new Intent(Main.this, Zabava.class);
+            //Main.this.startActivity(zabavaIntent);
         } else if (id == R.id.nav_intervjui) {
-
+            //Intent intervjuiIntent = new Intent(Main.this, Intervjui.class);
+            //Main.this.startActivity(intervjuiIntent);
         } else if (id == R.id.nav_kontakt) {
-
+            //Intent kontaktIntent = new Intent(Main.this, Kontakt.class);
+            //Main.this.startActivity(kontaktIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
