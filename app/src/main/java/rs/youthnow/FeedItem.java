@@ -1,8 +1,13 @@
 package rs.youthnow;
 
-import android.media.Image;
 import android.text.Html;
-import android.widget.ImageView;
+import android.util.Log;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+import java.io.IOException;
 
 public class FeedItem {
     String title;

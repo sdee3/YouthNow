@@ -8,11 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
 
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -95,17 +98,53 @@ public class ReadRss extends AsyncTask<Void,Void,Void> {
                             item.setPubDate(current.getTextContent());
                         } else if (current.getNodeName().equalsIgnoreCase("link")) {
                             item.setLink(current.getTextContent());
-                        }else if (current.getNodeName().equalsIgnoreCase("img")){
-                            //this will return us thumbnail url
-                            String url=current.getAttributes().item(0).getTextContent();
-                            item.setImageURL(url);
-                        }
+                        }else if (current.getNodeName().equalsIgnoreCase("content:encoded")){
+                            Log.d("if1","proslo 1");
+                            Node currentchild2 = current.getFirstChild();
+                            if(currentchild2.getNodeName().equalsIgnoreCase("img")){
+                                Log.d("if2","proslo 2");
+                                Node currentchild3 = currentchild2.getFirstChild();
+                                if(currentchild3.getNodeName().equalsIgnoreCase("src")){
+                                    Log.d("if3","proslo 3");
+                                    Node currentchild4 = currentchild3.getFirstChild();
+                                    item.setImageURL(currentchild4.getNodeName().toString());
+                                }
+                            }
+
+                            /*Log.d("content:encoded","nasao je Content:encoded?");
+                            org.jsoup.nodes.Document doc = null;
+                            try {
+                                doc = Jsoup.connect("http://www.youthnow.rs").get();
+                                Log.d("doc","uspesno (doc)");
+                                Log.d("docValue",doc.toString());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            org.jsoup.nodes.Element article = null;
+                            if (doc != null) {
+                                article = doc.select("link[type=application/rss+xml]").first();
+                                Log.d("Article", article.toString());
+                            }else{
+                                Log.d("failedDoc","Neuspesno (Doc)");
+                            }
+                            org.jsoup.nodes.Element imageElement = null;
+                            if (article != null) {
+                                imageElement = article.select("img").first();
+                            }else {
+                                Log.d("articleTest","Neuspesno (Article)...");
+                            }
+                            imageElement.absUrl("src");  //absolute URL on src;
+                            item.setImageURL(imageElement.val());
+                         */
+                         }
+
                     }
                     feedItems.add(item);
                     Log.d("itemTitle", item.getTitle());
                     Log.d("itemDescription", item.getDescription());
                     Log.d("itemPubDate", item.getPubDate());
                     Log.d("itemLink", item.getLink());
+                    //Log.d("imageLink", item.getImageURL());
                 }
             }
         }
